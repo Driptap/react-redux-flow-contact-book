@@ -16,26 +16,31 @@ export const ContactCard = ({
   contact: Contact,
 }) =>
   <div className="Contact-card">
-    <name>
+
+    <span className="name">
       { name }
-    </name>
-    <number>
+    </span>
+
+    <span className="number">
       Phone Number: { phone_number }
-    </number>
+    </span>
+
     <address>
       Address:
       <br />
       { address &&
-        address.split(',').map(line =>
-          <span>
+        address.split(',').map(( line, idx ) =>
+          <span key={ idx }>
             { line }
             <br/>
           </span>
       )}
     </address>
+
     <button onClick={ editContact }>
       Edit Contact
     </button>
+
   </div>;
 
 export const EditContactCard = ({

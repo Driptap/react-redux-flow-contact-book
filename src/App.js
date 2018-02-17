@@ -79,12 +79,12 @@ class App extends Component <{
 
           <div className="Search">
             Search:
-              <input
-                type="text"
-                value={this.state.searchTerm}
-                onChange={e => this.setState({
-                  searchTerm: e.target.value,
-                })} />
+            <input
+              type="text"
+              value={this.state.searchTerm}
+              onChange={e => this.setState({
+                searchTerm: e.target.value,
+              })} />
           </div>
         </header>
 
@@ -92,24 +92,26 @@ class App extends Component <{
 
           { contacts
             .filter(contact => !searchTerm
-              || contact.name && contact.name.toUpperCase().includes(
-                  searchTerm.toUpperCase())
-              || contact.number && contact.number.toUpperCase().includes(
-                  searchTerm.toUpperCase())
-              || contact.address && contact.address.toUpperCase().includes(
-                  searchTerm.toUpperCase())
+              || (contact.name && contact.name.toUpperCase().includes(
+                                searchTerm.toUpperCase()))
+              || (contact.number && contact.number.toUpperCase().includes(
+                                searchTerm.toUpperCase()))
+              || (contact.address && contact.address.toUpperCase().includes(
+                                searchTerm.toUpperCase()))
               )
             .map((contact, idx) => contact.status === STATES.editing
 
-            ? <EditContactCard
-                contact={ contact }
-                changeContact={ args => changeContact({ ...args, idx }) }
-                removeContact={ () => removeContact({ idx })}
-                stopEditingContact={ stopEditingContact } />
+              ? <EditContactCard
+                  key={`contact-${idx}`}
+                  contact={ contact }
+                  changeContact={ args => changeContact({ ...args, idx }) }
+                  removeContact={ () => removeContact({ idx }) }
+                  stopEditingContact={ stopEditingContact } />
 
-            : <ContactCard
-                contact={ contact }
-                editContact={() => editContact({ idx })} />
+              : <ContactCard
+                  key={`contact-${idx}`}
+                  contact={ contact }
+                  editContact={ () => editContact({ idx }) } />
 
           )}
 

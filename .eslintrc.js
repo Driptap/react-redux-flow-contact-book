@@ -29,8 +29,11 @@ module.exports = {
   ],
   'rules': {
     'flowtype-errors/show-errors': 2,
-    "flowtype/define-flow-type": 1,
-
+    'flowtype/define-flow-type': 1,
+    'no-use-before-define': [
+      'off',
+      0
+    ],
     'no-empty': [
       'off',
       0

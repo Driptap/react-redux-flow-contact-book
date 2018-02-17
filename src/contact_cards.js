@@ -19,12 +19,20 @@ export const ContactCard = ({
     <name>
       { name }
     </name>
-    <address>
-      { address }
-    </address>
     <number>
-      { phone_number }
+      Phone Number: { phone_number }
     </number>
+    <address>
+      Address:
+      <br />
+      { address &&
+        address.split(',').map(line =>
+          <span>
+            { line }
+            <br/>
+          </span>
+      )}
+    </address>
     <button onClick={ editContact }>
       Edit Contact
     </button>
@@ -84,10 +92,10 @@ export const EditContactCard = ({
         }
       })} />
 
-    <button onClick={stopEditingContact}>
+    <button onClick={stopEditingContact} className="save">
       Save
     </button>
-    <button onClick={removeContact}>
+    <button onClick={removeContact} className="remove">
       Remove Contact
     </button>
 
